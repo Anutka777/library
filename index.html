@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Book tracker">
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+  <title>Library</title>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="form">
+      <form id="form-new-book" onsubmit="event.preventDefault(); return false;">
+        <label for="title-new-book">Title</label>
+        <input type="text" name="title" id="title-new-book">
+        <label for="author-new-book">Author</label>
+        <input type="text" name="author" id="author-new-book">
+        <label for="pages-new-book">Number of pages</label>
+        <input type="number" name="pages" id="pages-new-book">
+        <label for="read-new-book">Have you read it?</label>
+        <input type="checkbox" name="read" id="read-new-book">
+        <button id="new-book">NEW BOOK</button>
+      </form>
+    </div>
+    <div class="library">
+      <table>
+        <caption>My Library</caption>
+        <thead>
+          <th>Title</th>
+          <th>Author</th>
+          <th>Number of Pages</th>
+          <th>Read already</th>
+        </thead>
+        <tbody id="library-table">
+    
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+</html>
