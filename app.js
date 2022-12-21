@@ -1,4 +1,5 @@
 let myLibrary = [];
+let myLibraryCounter = 0;
 
 function Book(title, author, pages, read) {
   this.title = title;
@@ -14,12 +15,15 @@ function addBookToLibrary() {
   read = document.getElementById("read-status").checked;
   book = new Book(title, author, pages, read);
   myLibrary.push(book);
+  myLibraryCounter++;
+  book.id = myLibraryCounter;
   displayBook(book);
 }
 
 function displayBook(book) {
   const bookTable = document.getElementById("library-table");
   const bookRow = bookTable.insertRow();
+  bookRow.setAttribute("id", `book-row-${book.id}`)
   const bookTitleCell = bookRow.insertCell();
   bookTitleCell.innerText = book.title;
   const bookAuthorCell = bookRow.insertCell();
@@ -30,10 +34,25 @@ function displayBook(book) {
   bookReadCell.innerText = book.read;
   const bookDeleteCell = bookRow.insertCell();
   const bookDeleteButton = document.createElement("button")
+  bookDeleteButton.setAttribute("id", `book-id-${book.id}`)
+  bookDeleteButton.classList.add("delete-btn");
   bookDeleteButton.innerText = "X";
   bookDeleteCell.appendChild(bookDeleteButton);
 }
 
-const button = document.getElementById('new-book-btn');
-button.addEventListener("click", addBookToLibrary)
+function deleteBook(id) {
+  console.log(id);
+  let bookRow = document.getElementById(`book-row-${id}`);
+  document.getElementById("library-table").removeChild(bookRow);
+  myLibrary.splice(id - 1, 1);
+  myLibraryCounter--;
+}
 
+const newBookButton = document.getElementById('new-book-btn');
+newBookButton.addEventListener("click", addBookToLibrary);
+
+document.addEventListener('click', function(e) {
+  if (e.target.classList.contains('delete-btn')) {
+    deleteBook(e.target.id.split("-")[2])
+  }
+});
