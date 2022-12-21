@@ -8,10 +8,10 @@ function Book(title, author, pages, read) {
 }
 
 function addBookToLibrary() {
-  title = document.getElementById('title-new-book').value;
-  author = document.getElementById('author-new-book').value;
-  pages = document.getElementById("pages-new-book").value;
-  read = document.getElementById("read-new-book").checked;
+  title = document.getElementById('title').value;
+  author = document.getElementById('author').value;
+  pages = document.getElementById("pages").value;
+  read = document.getElementById("read-status").checked;
   book = new Book(title, author, pages, read);
   myLibrary.push(book);
   displayBook(book);
@@ -20,19 +20,20 @@ function addBookToLibrary() {
 function displayBook(book) {
   const bookTable = document.getElementById("library-table");
   const bookRow = bookTable.insertRow();
-  const bookTitle = bookRow.insertCell();
-  const bookAuthor = bookRow.insertCell();
-  const bookPages = bookRow.insertCell();
-  const bookRead = bookRow.insertCell();
-  bookTitle.innerText = book.title;
-  bookAuthor.innerText = book.author;
-  bookPages.innerText = book.pages;
-  bookRead.innerText = book.read;
+  const bookTitleCell = bookRow.insertCell();
+  bookTitleCell.innerText = book.title;
+  const bookAuthorCell = bookRow.insertCell();
+  bookAuthorCell.innerText = book.author;
+  const bookPagesCell = bookRow.insertCell();
+  bookPagesCell.innerText = book.pages;
+  const bookReadCell = bookRow.insertCell();
+  bookReadCell.innerText = book.read;
+  const bookDeleteCell = bookRow.insertCell();
+  const bookDeleteButton = document.createElement("button")
+  bookDeleteButton.innerText = "X";
+  bookDeleteCell.appendChild(bookDeleteButton);
 }
 
-// Output library
-// myLibrary.forEach (book => displayBook(book));
-
-const button = document.getElementById('new-book');
+const button = document.getElementById('new-book-btn');
 button.addEventListener("click", addBookToLibrary)
 
