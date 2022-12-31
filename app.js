@@ -1,5 +1,13 @@
 let myLibrary = [];
-let myLibraryCounter = 0;
+let myLibraryIndex = 0;
+
+const newBookButton = document.getElementById('new-book-btn');
+newBookButton.addEventListener("click", addBookToLibrary);
+
+const form = document.getElementById("form");
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+})
 
 function Book(title, author, pages, read) {
   this.title = title;
@@ -13,43 +21,40 @@ function addBookToLibrary() {
   author = document.getElementById('author').value;
   pages = document.getElementById("pages").value;
   read = document.getElementById("read-status").checked;
+
   book = new Book(title, author, pages, read);
   myLibrary.push(book);
-  myLibraryCounter++;
-  book.id = myLibraryCounter;
+  myLibraryIndex++;
+  book.index = myLibraryIndex;
   displayBook(book);
+  form.reset();
 }
 
 function displayBook(book) {
   const bookTable = document.getElementById("library-table");
   const bookRow = bookTable.insertRow();
-  bookRow.setAttribute("id", `book-row-${book.id}`)
+  bookRow.setAttribute("id", `book-row-${book.index}`)
   const bookTitleCell = bookRow.insertCell();
-  bookTitleCell.innerText = book.title;
+  bookTitleCell.textContent = book.title;
   const bookAuthorCell = bookRow.insertCell();
-  bookAuthorCell.innerText = book.author;
+  bookAuthorCell.textContent = book.author;
   const bookPagesCell = bookRow.insertCell();
-  bookPagesCell.innerText = book.pages;
+  bookPagesCell.textContent = book.pages;
   const bookReadCell = bookRow.insertCell();
-  bookReadCell.innerText = book.read;
+  bookReadCell.textContent = book.read;
   const bookDeleteCell = bookRow.insertCell();
   const bookDeleteButton = document.createElement("button")
-  bookDeleteButton.setAttribute("id", `book-id-${book.id}`)
+  bookDeleteButton.setAttribute("id", `book-index-${book.index}`)
   bookDeleteButton.classList.add("delete-btn");
-  bookDeleteButton.innerText = "X";
+  bookDeleteButton.textContent = "X";
   bookDeleteCell.appendChild(bookDeleteButton);
 }
 
-function deleteBook(id) {
-  console.log(id);
-  let bookRow = document.getElementById(`book-row-${id}`);
+function deleteBook(index) {
+  let bookRow = document.getElementById(`book-row-${index}`);
   document.getElementById("library-table").removeChild(bookRow);
-  myLibrary.splice(id - 1, 1);
-  myLibraryCounter--;
+  myLibrary.splice(index - 1, 1);
 }
-
-const newBookButton = document.getElementById('new-book-btn');
-newBookButton.addEventListener("click", addBookToLibrary);
 
 document.addEventListener('click', function(e) {
   if (e.target.classList.contains('delete-btn')) {
