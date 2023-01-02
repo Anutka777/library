@@ -2,30 +2,99 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  outline-offset: .3rem;
+  font-family: "Roboto", sans-serif;
+}
+
+body {
+  background-color: cornsilk;
 }
 
 .wrapper {
-  display: flex;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  grid-gap: 1rem;
+  margin: 1rem 2rem;
 }
 
-.form {
-  width: 30%;
+.form-container {
+  display: grid;
+  align-items: center;
+}
+
+form {
+  display: grid;
+  justify-items: center;
 }
 
 form input {
   display: block;
+  margin: 0.5rem 0;
+  padding: 0.3rem;
 }
 
+label {
+  font-weight: 500;
+}
 
-table, td, th {
-  border: 1px solid black;
-  border-collapse: collapse;
-  padding: .5rem;
+input {
+  accent-color: crimson;
+  border: none;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+}
+
+input:hover {
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+input:focus {
+  outline: 1px solid crimson;
+}
+
+table {
+  margin: 0 auto;
+}
+
+table,
+td,
+th {
+  padding: 0.5rem;
+  text-align: center;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+table th {
+  font-weight: 500;
+}
+
+table caption {
+  margin-bottom: 1rem;
+  font-size: 2rem;
+  font-weight: 500;
 }
 
 button {
-  padding: .5rem;
+  padding: 0.2rem 1rem;
+  border: none;
   background-color: crimson;
   color: wheat;
-  font-weight: bolder;
+  font-weight: 500;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+}
+
+button:hover {
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+button:focus {
+  outline: 1px solid crimson;
+}
+
+#new-book-btn {
+  margin: 1rem 0;
+  letter-spacing: 0.1rem;
+  font-size: 1.2rem;
 }
